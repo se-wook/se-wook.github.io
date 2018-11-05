@@ -1,0 +1,345 @@
+---
+title:  "[C++] STL for Problem Solving (2)"
+key: 20180701
+tags: algorithm c++
+---
+
+*Algorithm 문제를 풀기 위해 자주 사용되는 STL 문법에 대해서 포스팅 2* :ghost:
+
+<!--more-->
+
+*Standard Template Library : Container 편*  
+
+# STL (1) Container
+
+## pair  
+
++ #include <`utility`> 에 있지만 algorithm과 vector와 같은 헤더 파일에서 이미 include 하고 있어서 따로 include하는 경우는 잘 없다.
++ 두 자료형 T1, T2를 묶어서 사용할 수 있다.
++ 첫번째 자료는 first, 두번째 자료는 second 로 접근한다.
++ make_pair를 이용하거나 생성자를 이용해서 만들 수 있다.
+
+{% highlight c++ linenos %}
+//usage 1
+pair<int, int> p1;
+cout << p1.first << ' ' << p1.second << '\n'; // output : 0 0
+
+p1.make_pair(10,20);
+cout << p1.first << ' ' << p1.second << '\n'; // output : 10 20
+
+//usage 2
+p2 = pair<int, int> (10,20);
+pair<int,int> p3(10,20);
+
+{% endhighlight %}  
+
++ 여러번 사용 가능  
+
+{% highlight c++ linenos %}
+pair<pair<int,int>, pair<int,int>> p;
+cout << p.first.first << ' ' << p.first.second << '\n';
+cout << p.second.first << ' ' << p.second.first << '\n';
+{% endhighlight %}  
+
+## tuple
+
++ #include <`tuple`>에 정의되어 있다.
++ pair와 같지만 여러개를 묶을 수 있다.
++ get을 이용해서 index로 접근한다.
++ make_tuple을 이용해서 만들 수 있다.  
+
+{% highlight c++ linenos %}
+//usage 1
+tuple<int, int, int> t = make_tuple(1,2,3);
+cout << get<0>(t) << ' ';
+cout << get<1>(t) << ' ';
+cout << get<2>(t) << '\n';
+//output : 1 2 3
+{% endhighlight %}  
++ get <> 사이에 변수를 넣을 수는 없다.  
+
+## tie
+
+{% highlight c++ linenos %}
+auto t = make_tuple(1,2,3); //make_pair로도 사용가능
+
+// get<> 사이에 변수를 넣을 수 없기 때문에 사용 불가한 코드
+// for(int i = 0; i<3; i++){
+//     cout << get<i>(t) << ' ';
+// }
+
+int x(0), y(0), z(0);
+tie(x,y,z) = t; //t 순서대로 x,y,z에 들어감
+cout << x << ' ' << y << ' ' << z << '\n';
+//output : 1 2 3
+
+tie(x,y,ignore) = t // 마지막 변수 값 무시할 때 ignore 사용
+{% endhighlight %}  
+
++ tie를 이용한 한 줄에 swap 함수 구현하기  
+{% highlight c++ linenos %}
+tie(a,b) = make_pair(b,a);
+//b가 a에 들어가고 a가 b에 들어감
+{% endhighlight %}  
+
+## vector  
+
++ #include <`vector`>에 정의되어 있다.
++ 길이를 변경할 수 있는 배열이다.  
+
++ vector 선언  
+{% highlight c++ linenos %}
+vector<int> v; // 길이가 0
+vector<int> v1(10); // int v1[10];
+vector<int> v2(10,1); // int v2[10], 초기값 : 1
+vector<vector<int>> v3; // 2차원 배열
+vector<vector<int>> v4(10, vector<int>(20)); //int v4[10][20]
+{% endhighlight %}  
+
++ 관련 메소드  
+{% highlight c++ linenos %}
+vector<int> a = {1,2,3,4,5};
+a.push_back(6); // [1,2,3,4,5,6]
+a.pop_back(); // [1,2,3,4,5]
+a.resize(3); // [1,2,3]
+a.size(); // 3
+a.empty(); // True:1 ,False:0
+a.front(); // 1 a[0]
+a.back(); // 3 a[2]
+a.clear(); // []
+{% endhighlight %}  
+
++ iterator  
+
+{% highlight c++ linenos %}
+vector<int> v = {1,2,3,4,5}
+
+// 방법 1
+for(vector<int>::iterator it = v.begin() ; it < v.end() ; ++it){
+    cout << *it << ' ';
+}
+cout << '\n';
+
+// 방법 2
+for(auto a = v.begin() ; a < v.end(); ++a){
+    cout << *a << ' ';
+}
+cout << '\n';
+
+//iterator는 pointer 개념이라 *it로 값에 접근
+{% endhighlight %}  
+
++ vector의 pair
+
+{% highlight c++ linenos %}
+vector<pair<int,int>> p;
+p.emplace_back(1,2); // [{1,2}]
+p.push_back({3,4}); // [{1,2}, {3,4}]
+p.push_back(make_pair(5,6)); // [{1,2}, {3,4}, {5,6}]
+
+//iterator
+for(auto it = p.begin(); it < p.end(); ++it){
+    cout << it->first << ' ' << it->second << ' ';
+    //cout << (*it).first << ' ' << (*it).second << ' ';
+}
+cout << '\n';
+{% endhighlight %}  
+
++ 삽입과 삭제  
+
+{% highlight c++ linenos %}
+vector<int> v = {1,2,3};
+//삽입 : 배열이라서 O(N)
+auto it = v.begin();
+v.insert(it, 5); // [5,1,2,3]
+
+it = v.begin() + 1;
+v.insert(it, 3, 0); // [5,0,0,0,1,2,3]
+
+it = v.begin() + 2;
+vector<int> b = {10,20};
+v.insert(it, b.begin(), b.end()); // [5,0,10,20,0,0,1,2,3]
+
+//삭제 : O(N)
+v.erase(v.begin()+2); // [5,0,20,0,0,1,2,3]
+v.erase(v.begin()+1, v.begin+4) // [arg1,arg2)라서 -> [5,0,1,2,3]
+{% endhighlight %}  
+
+## deque   
+##### Double Ended Queue  
+
+{% highlight c++ linenos %}
+deque<int> d;
+
+d.push_back(1);
+d.push_front(2);
+
+d.pop_back();
+d.pop_front();
+{% endhighlight %}  
+
+## list  
+
++ 이중 연결 리스트  
++ 삽입 삭제는 O(1) 중간에서 삽입 삭제 할 때 효율적  
++ 대회에서 잘 사용할 일이 없는 컨테이너  
+
+{% highlight c++ linenos %}
+list<int> l = {-1,0,-2,1,2};
+l.sort(); // [-2,-1,0,1,2]
+l.sort(greater<int>()); // [2,1,0,-1,-2]
+{% endhighlight %}  
+{% highlight c++ linenos %}
+l.sort([](int &u, int &v){ //절댓값으로 정렬
+    return abs(u) < abs(v);
+});
+l.reverse();
+{% endhighlight %}  
+
+## set  
+
++ 순서가 없다. (오름차순으로 접근)
++ 중복값을 허용하지 않는다. (중복값을 포함하는 multiset<`int`> m)  
++ Binary Search Tree로 구현되어 있다.  
++ 집합을 나타낼 때 효율적이다.  
+
+{% highlight c++ linenos %}
+set<int> s;
+s.insert(1);
+s.insert(3);
+s.insert(2);
+
+//insert에는 return 값이 존재한다.
+pair<set<int>::iterator, bool> p = s.insert(4);
+cout << p->first << '\n'; // insert할 값의 위치 : 4
+cout << p->second << '\n'; // 성공, 실패 여부 : 1
+
+auto p = s.insert(3);
+cout << p->first << '\n'; // insert할 값의 위치 : 3
+cout << p->second << '\n'; // 성공, 실패 여부 : 0
+{% endhighlight %}  
+
++ set은 bst이기 때문에 삽입, 삭제, 탐색 모두 O(logN)  
+
+{% highlight c++ linenos %}
+set<int> s = {1,2,3,4,5};
+s.erase(s.begin()); // [2,3,4,5]
+
+//탐색 : 트리 구조라서 s[i]의 형태처럼 사용 불가
+auto it = s.begin();
+++it; // 3을 가리킨다. O(logN)
+it = s.erase(it); // 3을 지우고 포인터는 4를 향한다.
+cout << *it << '\n'; // 4
+{% endhighlight %}  
+
++ find 함수, count 함수  
+
+{% highlight c++ linenos %}
+set<int> s = {7,2,5,1};
+
+auto it = s.find(1); // set<int>::iterator 다.
+print(s,it); // it이 end가 아니면 찾은 수를 출력 해주는 함수.
+
+//다른 방법
+for(int i = 0; i < 9; i++){
+    cout << "s.count(" << i << ")" << s.count(i) << '\n';
+} // 1 1 / 2 1 / 3 0 ...으로 출력
+{% endhighlight %}  
+
+## map
+
++ key, value로 구성
++ BST 라서 배열과 시간복잡도가 다름.  
+
+{% highlight c++ linenos %}
+map<int,int> m = { {1,2},{3,4},{5,6} }; // [key] = val
+//m[1] = 2 , m[2] = 0, m[3] = 4, ... val이 없으면 0.
+{% endhighlight %}  
+
+{% highlight c++ linenos %}
+//** map은 없는 key에 접근하면 val이 0으로 생겨버린다.
+map<int,int> m1;
+map<int,int> m2;
+
+for(int i=1; i<=9; i+=2){
+    m1[i] = i*i;
+    m2[i] = i*i;
+} //여기서 m1과 m2의 size는 각각 5.
+
+// case 1
+for(int i=1; i<=9; i++){
+    if(m1[i]){
+        cout << i << ' ';
+    }
+}// 2,4와 같은 없는 key에 접근한 경우 val이 0으로 생겨버렸다.
+
+// case 2
+for(int i=1; i<=9; i++){
+    if(m2.count(i)){
+        cout << i << ' ';
+    }
+}//존재하는 key의 val에만 접근하여 map의 크기는 변하지 않는다.
+
+// case 1의 map size는 10
+// case 2의 map size는 5
+{% endhighlight %}  
+
+## stack
+
++ #include <`stack`>
++ 내부는 deque로 구현되어있다.  
+{% highlight c++ linenos %}
+stack<int> s1;
+stack<int, list<int>> s2; // list형 stack을 구현하고 싶을때
+s1.push(1);
+s1.top();
+s1.pop();
+s1.empty();
+{% endhighlight %}  
+
+## queue  
+
++ #include <`queue`>
++ deque로 구현되어있다.  
+{% highlight c++ linenos %}
+queue<int> q1;
+queue<int, list<int>> q2;
+q1.push(1);
+q1.front();
+q1.back();
+q1.size();
+q1.empty();
+{% endhighlight %}  
+
+## priority_queue
+
++ #include <`priority_queue`>
++ 최대 힙  
+
+{% highlight c++ linenos %}
+//최소 힙 선언
+priority_queue<int, vector<int>, greater<int>> pq;
+{% endhighlight %}  
+
+## bitset
+
++ #include <`bitset`>
++ vector<`bool`>과 기능이 같지만 vector는 1byte  
++ <>안에 변수는 들어갈 수 없다.  
++ `&,|,^`등의 비트 연산이 가능하다.  
+
+{% highlight c++ linenos %}
+bitset<8> b1; //0 0 0 0 0 0 0 0
+bitset<10> b2(11); // 0 0 0 0 0 0 1 0 1 1
+bitset<8> b3("10110"); // 0 0 0 1 0 1 1 0
+
+b.set(0); //해당 비트를 1로 바꾼다.
+b.set() // 모든 비트를 1로 바꾼다.
+b.reset(1); //해당 비트를 0으로 바꾼다.
+b.reset();
+b.flip(3) //해당 비트를 바꾼다.
+b.flip();
+b.all(); // 모든 비트가 1인가?
+b.any(); // 비트가 1인 것이 하나 이상인가?
+b.none(); // 모든 비트가 0인가?
+{% endhighlight %}  
