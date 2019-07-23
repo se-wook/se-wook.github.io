@@ -1,4 +1,7 @@
 header:
+  # - titles:
+  #     en:       Study
+  #   url:        /study.html
   - titles:
       en:       Algorithm
       zh:       归档

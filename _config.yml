@@ -18,9 +18,9 @@
 ##############################
 text_skin: default # "default" (default), "dark", "forest", "ocean", "chocolate", "orange"
 highlight_theme: tomorrow-night-eighties # "default" (default), "tomorrow", "tomorrow-night", "tomorrow-night-eighties", "tomorrow-night-blue", "tomorrow-night-bright"
-url     : https://kosw.book # the base hostname & protocol for your site e.g. https://www.someone.com
+url     : # the base hostname & protocol for your site e.g. https://www.someone.com
 baseurl : # does not include hostname
-title   : Kosw Tech
+title   : SW Blog
 description: > # this means to ignore newlines until "Language & timezone"
   Your Site Description
 
@@ -35,7 +35,7 @@ timezone: # see https://en.wikipedia.org/wiki/List_of_tz_database_time_zones for
 ##############################
 author:
   type      : # "person" (default), "organization"
-  name      : osw
+  name      : se-wook
   url       :
   avatar    : # path or url of avatar image
   bio       : I am an amazing person.
@@ -46,14 +46,14 @@ author:
   weibo     : # "user_id"   the last part of your profile url, e.g. https://www.weibo.com/user_id/profile?...
   douban    : # "user_name" the last part of your profile url, e.g. https://www.douban.com/people/user_name/
   linkedin  : # "user_name" the last part of your profile url, e.g. https://www.linkedin.com/in/user_name/
-  github    : kosw
+  github    : se-wook
   npm       : # "user_name" the last part of your profile url, e.g. https://www.npmjs.com/~user_name
   telegram  : # "user_name" the last part of your profile url, e.g. https://t.me/user_name
 
 
 ## => GitHub Repository (if the site is hosted by GitHub)
 ##############################
-repository: kosw/kosw.github.io
+repository: se-wook/se-wook.github.io
 repository_tree: master
 
 
@@ -86,7 +86,7 @@ mathjax: # false (default), true
 mathjax_autoNumber: # false (default), true
 
 ## Mermaid
-mermaid: # false (default), true
+mermaid: true # false (default), true
 
 ## Chart
 chart: # false (default), true
@@ -176,7 +176,36 @@ exclude:
   - /test
   - /vendor
 
+# defaults:
+#   - scope:
+#       path: ""
+#       type: posts
+#     values:
+#       layout: article
+#       sharing: true
+#       license: true
+#       aside:
+#         toc: true
+#       show_edit_on_github: true
+#       pageview: true
+
+
+collections:
+  docs:
+    output: true
+  page:
+    output: true
+  articles:
+    output: true
+  languages:
+    output: true
+
 defaults:
+  - scope:
+      path: "test"
+    values:
+      articles:
+        excerpt_type: html
   - scope:
       path: ""
       type: posts
@@ -184,10 +213,45 @@ defaults:
       layout: article
       sharing: true
       license: true
+      category: post
       aside:
         toc: true
       show_edit_on_github: true
       pageview: true
+  - scope:
+      path: ""
+      type: articles
+    values:
+      show_date: false
+  - scope:
+      path: ""
+      type: languages
+    values:
+      layout: article
+  - scope:
+      path: "_docs/en"
+    values:
+      layout: article
+      sidebar:
+        nav: docs-en
+      license: true
+      aside:
+        toc: true
+      show_edit_on_github: true
+      show_date: false
+  - scope:
+      path: "_docs/zh"
+    values:
+      layout: article
+      sidebar:
+        nav: docs-zh
+      license: true
+      aside:
+        toc: true
+      lang: zh
+      show_edit_on_github: true
+      show_date: false
+
 
 
 ## => Plugins
