@@ -1,9 +1,9 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.7.4">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2019-08-28T23:45:38+09:00</updated><id>http://localhost:4000/</id><title type="html">SW Blog</title><subtitle>Your Site Description
-</subtitle><author><name>se-wook</name><email>os203205@gmail.com</email></author><entry><title type="html">Graph) Minimum Spanning Tree</title><link href="http://localhost:4000/post/2019/08/28/MST.html" rel="alternate" type="text/html" title="Graph) Minimum Spanning Tree" /><published>2019-08-28T00:00:00+09:00</published><updated>2019-08-28T00:00:00+09:00</updated><id>http://localhost:4000/post/2019/08/28/MST</id><content type="html" xml:base="http://localhost:4000/post/2019/08/28/MST.html">&lt;p&gt;&lt;em&gt;최소 스패닝 트리&lt;/em&gt; :palm tree:&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.7.4">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2019-08-28T23:53:48+09:00</updated><id>http://localhost:4000/</id><title type="html">SW Blog</title><subtitle>Your Site Description
+</subtitle><author><name>se-wook</name><email>os203205@gmail.com</email></author><entry><title type="html">Graph) Minimum Spanning Tree</title><link href="http://localhost:4000/post/2019/08/28/MST.html" rel="alternate" type="text/html" title="Graph) Minimum Spanning Tree" /><published>2019-08-28T00:00:00+09:00</published><updated>2019-08-28T00:00:00+09:00</updated><id>http://localhost:4000/post/2019/08/28/MST</id><content type="html" xml:base="http://localhost:4000/post/2019/08/28/MST.html">&lt;p&gt;&lt;em&gt;최소 스패닝 트리&lt;/em&gt; 🌳&lt;/p&gt;
 
 &lt;!--more--&gt;
 
-&lt;h2 id=&quot;mst-&quot;&gt;MST ?&lt;/h2&gt;
+&lt;h2 id=&quot;mst&quot;&gt;MST&lt;/h2&gt;
 
 &lt;ul&gt;
   &lt;li&gt;모든 정점을 연결하는 가중치의 합이 최소인 조건을 만족하는 트리&lt;/li&gt;
@@ -23,7 +23,8 @@
       &lt;li&gt;간선 리스트 자료구조, 가중치 기준 오름차순 정렬 (Greedy)
         &lt;div class=&quot;language-c++ highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;      &lt;span class=&quot;c1&quot;&gt;//edge -&amp;gt; start, end, cost
 &lt;/span&gt;      &lt;span class=&quot;n&quot;&gt;vector&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;edge&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-      &lt;span class=&quot;n&quot;&gt;sort&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;begin&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(),&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;end&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;());&lt;/span&gt;
+      &lt;span class=&quot;c1&quot;&gt;// TODO: 연산자 오버로딩
+&lt;/span&gt;      &lt;span class=&quot;n&quot;&gt;sort&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;begin&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(),&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;end&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;());&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;        &lt;/div&gt;
       &lt;/li&gt;
       &lt;li&gt;Union-Find를 이용해서 Cycle 체크, Cycle이 없다면 연결
@@ -44,7 +45,7 @@
       &lt;li&gt;배우고 나서 정리&lt;/li&gt;
     &lt;/ul&gt;
   &lt;/li&gt;
-&lt;/ol&gt;</content><author><name>se-wook</name><email>os203205@gmail.com</email></author><category term="post" /><category term="ds" /><category term="mst" /><category term="graph" /><category term="tree" /><summary type="html">최소 스패닝 트리 :palm tree:</summary></entry><entry><title type="html">[BOJ] 3114 사과와 바나나</title><link href="http://localhost:4000/post/2019/08/03/3114.html" rel="alternate" type="text/html" title="[BOJ] 3114 사과와 바나나" /><published>2019-08-03T00:00:00+09:00</published><updated>2019-08-03T00:00:00+09:00</updated><id>http://localhost:4000/post/2019/08/03/3114</id><content type="html" xml:base="http://localhost:4000/post/2019/08/03/3114.html">&lt;p&gt;&lt;em&gt;BOJ 3114 사과와 바나나&lt;/em&gt; :apple: :banana:&lt;/p&gt;
+&lt;/ol&gt;</content><author><name>se-wook</name><email>os203205@gmail.com</email></author><category term="post" /><category term="ds" /><category term="mst" /><category term="graph" /><category term="tree" /><summary type="html">최소 스패닝 트리 🌳</summary></entry><entry><title type="html">[BOJ] 3114 사과와 바나나</title><link href="http://localhost:4000/post/2019/08/03/3114.html" rel="alternate" type="text/html" title="[BOJ] 3114 사과와 바나나" /><published>2019-08-03T00:00:00+09:00</published><updated>2019-08-03T00:00:00+09:00</updated><id>http://localhost:4000/post/2019/08/03/3114</id><content type="html" xml:base="http://localhost:4000/post/2019/08/03/3114.html">&lt;p&gt;&lt;em&gt;BOJ 3114 사과와 바나나&lt;/em&gt; :apple: :banana:&lt;/p&gt;
 
 &lt;!--more--&gt;
 

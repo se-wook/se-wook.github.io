@@ -3,7 +3,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"><title>Graph) Minimum Spanning Tree</title>
 
-<meta name="description" content="최소 스패닝 트리 :palm tree:">
+<meta name="description" content="최소 스패닝 트리 🌳">
 <link rel="canonical" href="http://localhost:4000/post/2019/08/28/MST.html"><link rel="alternate" type="application/rss+xml" title="SW Blog" href="/feed.xml">
 <!-- begin favicon --><link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png"><link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png"><link rel="manifest" href="/assets/site.webmanifest"><link rel="mask-icon" href="/assets/safari-pinned-tab.svg" color="#fc4d50"><link rel="shortcut icon" href="/assets/favicon.ico">
 
@@ -290,11 +290,11 @@
             </li></ul></div><meta itemprop="author" content="se-wook"/><meta itemprop="datePublished" content="2019-08-28T00:00:00+09:00">
     <meta itemprop="keywords" content="ds,mst,graph,tree"><div class="js-article-content"><div class="layout--article">
 
-  <div class="article__content" itemprop="articleBody"><p><em>최소 스패닝 트리</em> :palm tree:</p>
+  <div class="article__content" itemprop="articleBody"><p><em>최소 스패닝 트리</em> 🌳</p>
 
 <!--more-->
 
-<h2 id="mst-">MST ?</h2>
+<h2 id="mst">MST</h2>
 
 <ul>
   <li>모든 정점을 연결하는 가중치의 합이 최소인 조건을 만족하는 트리</li>
@@ -314,7 +314,8 @@
       <li>간선 리스트 자료구조, 가중치 기준 오름차순 정렬 (Greedy)
         <div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code>      <span class="c1">//edge -&gt; start, end, cost
 </span>      <span class="n">vector</span><span class="o">&lt;</span><span class="n">edge</span><span class="o">&gt;</span> <span class="n">v</span><span class="p">;</span>
-      <span class="n">sort</span><span class="p">(</span><span class="n">v</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span> <span class="n">v</span><span class="p">.</span><span class="n">end</span><span class="p">());</span>
+      <span class="c1">// TODO: 연산자 오버로딩
+</span>      <span class="n">sort</span><span class="p">(</span><span class="n">v</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span> <span class="n">v</span><span class="p">.</span><span class="n">end</span><span class="p">());</span>
 </code></pre></div>        </div>
       </li>
       <li>Union-Find를 이용해서 Cycle 체크, Cycle이 없다면 연결
